@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>KB Tool – AI Assistant</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <!-- Sidebar (ChatGPT style) -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <button class="new-chat-btn" id="newChatBtn">+ New chat</button>
+        </div>
+        <div class="sidebar-search">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" placeholder="Search chats..." id="searchChats" />
+        </div>
+        <div class="chat-history" id="chatHistory"></div>
+        <div class="sidebar-section">
+          <div class="section-title">Images</div>
+          <div class="image-gen-btn" id="openImageGenBtn">
+            🎨 Generate image
+          </div>
+        </div>
+        <div class="sidebar-footer">
+          <div class="user-auth" id="userAuth">
+            <div class="auth-prompt">
+              <button class="login-btn" id="loginBtn">Log in</button>
+              <button class="signup-btn" id="signupBtn">
+                Sign up for free
+              </button>
+            </div>
+          </div>
+          <div class="model-selector">
+            <select id="modelSelect">
+              <option value="openai/gpt-3.5-turbo">GPT-3.5 Turbo</option>
+              <option value="openai/gpt-4-turbo">GPT-4 Turbo</option>
+              <option value="deepseek/deepseek-chat">DeepSeek</option>
+              <option value="meta-llama/llama-3-70b-instruct">Llama 3</option>
+              <option value="google/gemini-pro">Gemini Pro</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main chat area -->
+      <main class="chat-main">
+        <div class="chat-header">
+          <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+          <div class="logo">KB Tool</div>
+          <div class="header-actions">
+            <button class="icon-btn" id="voiceInputBtn" title="Voice input">
+              🎤
+            </button>
+          </div>
+        </div>
+
+        <div class="messages-container" id="messagesContainer">
+          <div class="welcome-screen">
+            <div class="welcome-icon">✨</div>
+            <h2>What are you working on?</h2>
+            <div class="suggestion-chips">
+              <button class="chip">Write a Python script</button>
+              <button class="chip">Explain quantum computing</button>
+              <button class="chip">Help with resume</button>
+              <button class="chip">Generate a story</button>
+            </div>
+            <div class="auth-cta" id="authCta">
+              <p>Get responses tailored to you</p>
+              <button class="cta-login">Log in</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-area">
+          <div class="input-wrapper">
+            <textarea
+              id="userInput"
+              placeholder="Ask anything..."
+              rows="1"
+            ></textarea>
+            <button class="attach-btn" title="Upload file">📎</button>
+            <button class="send-btn" id="sendBtn">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+            </button>
+          </div>
+          <div class="input-footer">
+            <span>Press Enter to send, Shift+Enter for new line</span>
+            <button class="voice-trigger" id="voiceTriggerBtn">🎤 Voice</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Image generation modal (hidden) -->
+    <div class="modal" id="imageModal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Generate an image</h3>
+        <input
+          type="text"
+          id="imagePrompt"
+          placeholder="Describe the image..."
+        />
+        <button id="generateImageBtn">Generate</button>
+        <div id="imageResult"></div>
+      </div>
+    </div>
+  <!-- subtle credit -->
+  <div style="position: fixed; bottom: 8px; right: 12px; font-size: 11px; color: #6b7280; opacity: 0.4; z-index: 999; font-family: monospace; pointer-events: none;">
+    for you karu
+  </div>
+</body>
+</html>
+    <script src="script.js"></script>
+  </body>
+</html>
